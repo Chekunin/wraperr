@@ -1,4 +1,4 @@
-module wraperr
+module github.com/chekunin/wraperr
 
 go 1.14
 
