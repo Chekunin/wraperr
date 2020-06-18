@@ -15,7 +15,7 @@ func TestWrappingError(t *testing.T) {
 	assert.Equal(t, "error4: error3: error2: error1", err.Error())
 
 	err2 := NewWrapErr(fmt.Errorf("error1"), nil)
-	assert.Equal(t, "error1", err2.Error())
+	assert.Equal(t, "error1: nil", err2.Error())
 
 	err3 := NewWrapErr(fmt.Errorf("error2"), fmt.Errorf("error1"))
 	err3 = NewWrapErr(fmt.Errorf("error3"), err3)

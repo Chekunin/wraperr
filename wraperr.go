@@ -26,7 +26,10 @@ func NewWrapErr(curErr error, prevErr error) *WrapErr {
 	if errors.As(prevErr, &e) {
 		res.prevErr = e
 		res.stackTrace = e.stackTrace
-	} else if prevErr != nil {
+	} else {
+		if prevErr == nil {
+			prevErr = errors.New("nil")
+		}
 		res.prevErr = &WrapErr{
 			curErr:  prevErr,
 			prevErr: nil,
