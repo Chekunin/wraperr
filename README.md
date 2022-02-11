@@ -16,7 +16,7 @@ import (
 
 func main() {
 	if err := somethingGoWrong(); err != nil {
-		err = NewWrapErr(fmt.Errorf("somethingGoWrong"), err)
+		err = Wrap(fmt.Errorf("somethingGoWrong"), err)
 		fmt.Println(err) // somethingGoWrong: any error
 	}
 }
@@ -43,7 +43,7 @@ func main() {
         denominator := getDenominatorFromRequest(r) // e.g. denominator = 0
         res, err := divide(numerator, denominator)
         if err != nil {
-            err = NewWrapErr(fmt.Errorf("devide with params %d and %d", denominator, denominator), err)
+            err = Wrap(fmt.Errorf("devide with params %d and %d", denominator, denominator), err)
             if errors.Is(err, errDivisionByZero) {
                 http.Error(w, "bad request", 400)
             } else {

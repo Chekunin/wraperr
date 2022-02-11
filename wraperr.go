@@ -15,7 +15,7 @@ type WrapErr struct {
 type StackTrace []Frame
 type Frame uintptr
 
-func NewWrapErr(curErr error, prevErr error) *WrapErr {
+func Wrap(curErr error, prevErr error) *WrapErr {
 	if curErr == nil {
 		panic("wrap_err: curErr cannot be nil")
 	}
