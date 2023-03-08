@@ -53,7 +53,7 @@ func Wrap(curErr error, prevErr error) *WrapErr {
 }
 
 func (e WrapErr) Is(target error) bool {
-	return e.curErr.Error() == target.Error()
+	return errors.Is(e.curErr, target)
 }
 
 func (e *WrapErr) As(target interface{}) bool {
