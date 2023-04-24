@@ -2,6 +2,7 @@ package wraperr
 
 import (
 	"errors"
+	"fmt"
 	"runtime"
 	"strings"
 )
@@ -14,6 +15,10 @@ type WrapErr struct {
 
 type StackTrace []Frame
 type Frame uintptr
+
+func WrapString(curErrMessage string, prevErr error) *WrapErr {
+	return Wrap(fmt.Errorf(curErrMessage), prevErr)
+}
 
 func Wrap(curErr error, prevErr error) *WrapErr {
 	if curErr == nil {
